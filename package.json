@@ -1,6 +1,6 @@
 {
   "name": "vscode-ktlint-formatter",
-  "displayName": "Ktlint Formatter",
+  "displayName": "Kotlin Ktlint Formatter",
   "description": "Kotlin formatter using ktlint with zero configuration",
   "version": "0.1.0",
   "publisher": "rnoro",
@@ -60,5 +60,9 @@
     "type": "git",
     "url": "https://github.com/rnoro/vscode-ktlint-formatter.git"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "homepage": "https://github.com/rnoro/vscode-ktlint-formatter#readme",
+  "bugs": {
+    "url": "https://github.com/rnoro/vscode-ktlint-formatter/issues"
+  }
 }
