@@ -2,6 +2,15 @@
 
 All notable changes to the "Ktlint Formatter" extension will be documented in this file.
 
+## [0.1.1] - 2025-11-23
+
+### Documentation
+
+- Updated README with VS Code Marketplace installation instructions
+- Added direct marketplace link for easier installation
+- Reorganized installation section to prioritize marketplace installation
+- Added CHANGELOG.md to track version history
+
 ## [0.1.0] - 2025-11-23
 
 ### Initial Release
