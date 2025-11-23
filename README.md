@@ -91,6 +91,14 @@ Ktlint is stored at: `~/.vscode/globalStorage/rnoro.vscode-ktlint-formatter/ktli
 
 Found a bug or have a feature request? Please open an issue on [GitHub](https://github.com/rnoro/vscode-ktlint-formatter/issues).
 
+## 🔌 Recommended Extensions
+
+For the best Kotlin development experience in VS Code, use this extension together with:
+
+- **[Kotlin Language Server](https://github.com/Kotlin/kotlin-lsp)** - Official Kotlin language server from JetBrains
+  - Provides IntelliSense, code navigation, and refactoring
+  - Developed and maintained by JetBrains
+
 ## 📝 License
 
 MIT License - see [LICENSE](LICENSE) for details
