@@ -1,26 +1,49 @@
 # Ktlint Formatter for VS Code
 
-A VS Code extension that automatically formats Kotlin code using ktlint with zero configuration. ktlint is embedded in the extension, so you can start using it right away without any setup.
+A zero-configuration VS Code extension that formats Kotlin code using ktlint. No setup required - just install and start formatting!
 
 ## ✨ Features
 
-- **Zero Configuration**: No need to install or configure ktlint separately
-- **Automatic Download**: The extension automatically downloads ktlint on first run
-- **One-Click Formatting**: Integrated with VS Code's native formatting features
-- **Kotlin Standard Style**: Follows the official Kotlin style guide via ktlint
+- 🚀 **Zero Configuration**: No ktlint installation or setup needed
+- 📦 **Automatic Setup**: Downloads ktlint (v1.8.0) automatically on first use
+- 🎯 **Native Integration**: Works with VS Code's built-in formatting commands
+- 📝 **Kotlin Standard**: Follows the official Kotlin coding conventions
+- 📜 **Script Support**: Formats both `.kt` and `.kts` files
+- ✅ **Status Notifications**: Visual feedback on formatting success/failure
 
-## 🚀 Usage
+## 📥 Installation
 
-1. Install the extension in VS Code
-2. Open a Kotlin file (`.kt`, `.kts`)
-3. Format your code:
-   - **Keyboard Shortcut**: `Shift + Alt + F` (Windows/Linux) or `Shift + Option + F` (Mac)
-   - **Context Menu**: Right-click and select "Format Document"
-   - **Command Palette**: Run `Format Document`
+### From GitHub Releases
 
-### Format on Save
+1. Download the latest `.vsix` file from [Releases](https://github.com/rnoro/vscode-ktlint-formatter/releases)
+2. Open VS Code
+3. Press `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac)
+4. Type "Install from VSIX" and select it
+5. Choose the downloaded `.vsix` file
 
-To enable automatic formatting when you save a file, configure VS Code settings:
+**Command Line:**
+
+```bash
+code --install-extension vscode-ktlint-formatter-0.1.0.vsix
+```
+
+### From VS Code Marketplace
+
+_Coming soon!_
+
+## 🎨 Usage
+
+### Manual Formatting
+
+Open any Kotlin file (`.kt` or `.kts`) and format using:
+
+- **Keyboard**: `Shift + Alt + F` (Windows/Linux) or `Shift + Option + F` (Mac)
+- **Context Menu**: Right-click → "Format Document"
+- **Command Palette**: `Ctrl+Shift+P` → "Format Document"
+
+### Auto Format on Save
+
+Add to your VS Code `settings.json`:
 
 ```json
 {
@@ -36,33 +59,43 @@ To enable automatic formatting when you save a file, configure VS Code settings:
 
 ## 📋 Requirements
 
-- VS Code 1.85.0 or later
-- Java Runtime (required to run ktlint)
+- **VS Code**: 1.85.0 or later
+- **Java Runtime**: Required to execute ktlint (check with `java -version`)
 
 ## 🔧 How It Works
 
-1. The extension automatically downloads the ktlint binary when first activated
-2. When formatting is requested, ktlint is executed to format the code
-3. The formatted result is applied to the editor
+1. Extension activates when you open a Kotlin file
+2. On first use, ktlint binary (v1.8.0) is downloaded automatically
+3. Formatting requests are processed through ktlint
+4. Results are applied to your editor with status notifications
 
 ## 🐛 Troubleshooting
 
 ### Formatting doesn't work
 
-1. Check the "Ktlint Formatter" logs in the Output panel
-2. Verify that Java is installed on your system
-3. Try reloading the extension or restarting VS Code
+1. **Check Output Panel**: View → Output → Select "Ktlint Formatter"
+2. **Verify Java**: Run `java -version` in terminal
+3. **Reload Extension**: Press `F1` → "Reload Window"
 
-### ktlint download fails
+### Download fails
 
 - Check your internet connection
-- If you need proxy settings, configure VS Code's proxy settings
+- Verify proxy settings if behind corporate firewall
+- Check VS Code's network settings
+
+### Manual ktlint download location
+
+Ktlint is stored at: `~/.vscode/globalStorage/rnoro.vscode-ktlint-formatter/ktlint`
+
+## 🤝 Contributing
+
+Found a bug or have a feature request? Please open an issue on [GitHub](https://github.com/rnoro/vscode-ktlint-formatter/issues).
 
 ## 📝 License
 
-MIT
+MIT License - see [LICENSE](LICENSE) for details
 
-## 🔗 Related Links
+## 🔗 Related Resources
 
 - [ktlint Official Site](https://pinterest.github.io/ktlint/)
 - [Kotlin Coding Conventions](https://kotlinlang.org/docs/coding-conventions.html)
