@@ -2,9 +2,12 @@ import * as vscode from "vscode";
 import * as path from "path";
 import * as fs from "fs";
 import * as https from "https";
+import * as os from "os";
 
 const KTLINT_VERSION = "1.8.0";
 const KTLINT_URL = `https://github.com/pinterest/ktlint/releases/download/${KTLINT_VERSION}/ktlint`;
+
+export const isWindows = os.platform() === "win32";
 
 /**
  * Ensure ktlint binary exists. Downloads it if not present.
@@ -16,7 +19,7 @@ export async function ensureKtlintExists(
   context: vscode.ExtensionContext
 ): Promise<string> {
   const storageDir = context.globalStorageUri.fsPath;
-  const ktlintPath = path.join(storageDir, "ktlint");
+  const ktlintPath = isWindows ? path.join(storageDir, "ktlint.jar") : path.join(storageDir, "ktlint");
 
   // Return if already exists
   if (fs.existsSync(ktlintPath)) {
@@ -112,6 +115,7 @@ function downloadFile(
         // Make executable
         try {
           fs.chmodSync(destPath, 0o755);
+          fs.renameSync(path.join(destPath,"ktlint"), path.join(destPath,"ktlint.jar"));
         } catch (e) {
           // Ignore chmod errors (e.g. on Windows)
         }

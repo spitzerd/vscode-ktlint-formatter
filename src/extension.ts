@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 import * as path from "path";
-import { ensureKtlintExists } from "./ktlintDownloader";
+import { ensureKtlintExists, isWindows } from "./ktlintDownloader";
 import { formatKotlinCode } from "./formatter";
 
 let outputChannel: vscode.OutputChannel;
@@ -32,7 +32,7 @@ export async function activate(context: vscode.ExtensionContext) {
         try {
           const ktlintPath = path.join(
             context.globalStorageUri.fsPath,
-            "ktlint"
+            isWindows ? "ktlint.jar" : "ktlint"
           );
           const formatted = await formatKotlinCode(
             document.getText(),
