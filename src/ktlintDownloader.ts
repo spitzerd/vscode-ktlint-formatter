@@ -115,7 +115,9 @@ function downloadFile(
         // Make executable
         try {
           fs.chmodSync(destPath, 0o755);
-          fs.renameSync(path.join(destPath,"ktlint"), path.join(destPath,"ktlint.jar"));
+          if (isWindows){
+            fs.renameSync(path.join(destPath,"ktlint"), path.join(destPath,"ktlint.jar"));
+          }
         } catch (e) {
           // Ignore chmod errors (e.g. on Windows)
         }
