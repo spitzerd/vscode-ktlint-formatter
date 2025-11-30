@@ -2,6 +2,18 @@
 
 All notable changes to the "Ktlint Formatter" extension will be documented in this file.
 
+## [0.1.5] - 2025-11-30
+
+### Improved
+
+- **Windows Support**: Use official `ktlint.bat` wrapper for Windows execution
+- **Download Strategy**: Download both `ktlint.bat` and `ktlint` JAR on Windows for proper batch file execution
+- **Compatibility**: Follow official ktlint documentation for Windows support
+
+### Fixed
+
+- **Windows Execution**: Fixed potential execution issues by using official batch wrapper instead of direct JAR execution
+
 ## [0.1.4] - 2025-11-30
 
 ### Added
