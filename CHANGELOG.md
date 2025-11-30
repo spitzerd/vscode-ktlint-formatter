@@ -2,6 +2,18 @@
 
 All notable changes to the "Ktlint Formatter" extension will be documented in this file.
 
+## [0.1.4] - 2025-11-30
+
+### Added
+
+- **Windows Support**: Added cross-platform support for Windows, Linux, and macOS
+
+### Fixed
+
+- **Path Resolution**: Fixed ktlint path resolution to use consistent approach across all platforms
+- **Windows Execution**: Enabled shell option for proper ktlint execution on Windows
+- **Download Logic**: Simplified download mechanism to use single ktlint binary for all platforms
+
 ## [0.1.3] - 2025-11-23
 
 ### Performance
