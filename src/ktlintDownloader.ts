@@ -5,9 +5,25 @@ import * as https from "https";
 import * as os from "os";
 
 const KTLINT_VERSION = "1.8.0";
-const KTLINT_URL = `https://github.com/pinterest/ktlint/releases/download/${KTLINT_VERSION}/ktlint`;
+const KTLINT_BASE_URL = `https://github.com/pinterest/ktlint/releases/download/${KTLINT_VERSION}`;
 
 export const isWindows = os.platform() === "win32";
+
+/**
+ * Get the appropriate ktlint URL and filename based on platform
+ */
+function getKtlintDownloadInfo(): { url: string; filename: string } {
+  if (isWindows) {
+    return {
+      url: `${KTLINT_BASE_URL}/ktlint.bat`,
+      filename: "ktlint.bat",
+    };
+  }
+  return {
+    url: `${KTLINT_BASE_URL}/ktlint`,
+    filename: "ktlint",
+  };
+}
 
 /**
  * Ensure ktlint binary exists. Downloads it if not present.
@@ -19,7 +35,8 @@ export async function ensureKtlintExists(
   context: vscode.ExtensionContext
 ): Promise<string> {
   const storageDir = context.globalStorageUri.fsPath;
-  const ktlintPath = isWindows ? path.join(storageDir, "ktlint.jar") : path.join(storageDir, "ktlint");
+  const { filename } = getKtlintDownloadInfo();
+  const ktlintPath = path.join(storageDir, filename);
 
   // Return if already exists
   if (fs.existsSync(ktlintPath)) {
@@ -46,6 +63,8 @@ export async function downloadKtlint(
     fs.mkdirSync(storageDir, { recursive: true });
   }
 
+  const { url } = getKtlintDownloadInfo();
+
   await vscode.window.withProgress(
     {
       location: vscode.ProgressLocation.Notification,
@@ -54,7 +73,7 @@ export async function downloadKtlint(
     },
     async (progress) => {
       progress.report({ increment: 0, message: "Starting download" });
-      await downloadFile(KTLINT_URL, ktlintPath, progress);
+      await downloadFile(url, ktlintPath, progress);
     }
   );
 }
@@ -112,14 +131,13 @@ function downloadFile(
 
       file.on("finish", () => {
         file.close();
-        // Make executable
+        // Make executable (skip on Windows)
         try {
-          fs.chmodSync(destPath, 0o755);
-          if (isWindows){
-            fs.renameSync(path.join(destPath,"ktlint"), path.join(destPath,"ktlint.jar"));
+          if (!isWindows) {
+            fs.chmodSync(destPath, 0o755);
           }
         } catch (e) {
-          // Ignore chmod errors (e.g. on Windows)
+          // Ignore chmod errors
         }
         progress.report({ increment: 100, message: "Complete" });
         resolve();
