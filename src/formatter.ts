@@ -23,8 +23,7 @@ export async function formatKotlinCode(
   // Create a temporary file to avoid stdin issues and ensure correct file extension handling
   const tempDir = os.tmpdir();
   const extension = path.extname(fileName) || ".kt";
-  const randomName = crypto.randomBytes(8).toString("hex");
-  const tempFilePath = path.join(tempDir, `ktlint_${randomName}${extension}`);
+  const tempFilePath = path.join(tempDir, path.parse(fileName).name + extension);
 
   try {
     logger(`Running ktlint: ${ktlintPath} on ${tempFilePath}`);
