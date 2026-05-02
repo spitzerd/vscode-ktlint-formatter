@@ -8,8 +8,8 @@ async function sleep(ms: number): Promise<void> {
 suite("Extension Test Suite", () => {
 
 	let editor: vscode.TextEditor;
-	let fileName = "test.kt";
-	let textTobeFormatted = "fun main( ) {}"
+	const fileName = "test.kt";
+	const textTobeFormatted = "fun main( ) {}"
 
 	setup(async function () {
 		const wsFolder = vscode.workspace.workspaceFolders![0].uri;
@@ -27,9 +27,6 @@ suite("Extension Test Suite", () => {
 	});
 
 	teardown(async function () {
-		const wsFolder = vscode.workspace.workspaceFolders![0].uri;
-		const file = vscode.Uri.joinPath(wsFolder, fileName);
-		
 		await editor.edit((editBuilder) => {
 			const fullRange = new vscode.Range(
 				editor.document.positionAt(0),
