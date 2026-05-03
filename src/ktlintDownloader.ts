@@ -168,7 +168,7 @@ function downloadFile(
         try {
           if (!isWindows) {
             fs.chmodSync(destPath, 0o755);
-            await setTimeout(() => {}, 100); // Ensure chmod takes effect before resolving
+            await new Promise(resolve => setTimeout(resolve, 100)); // Ensure chmod takes effect before resolving
           }
         } catch (e) {
           // Ignore chmod errors
